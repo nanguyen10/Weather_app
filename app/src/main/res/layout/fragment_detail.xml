@@ -402,7 +402,7 @@
 
             <ImageView
                 android:id="@+id/Wind_speed_ic"
-                android:src="@drawable/w_direction"
+                android:src="@drawable/w_speed"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
 
@@ -413,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="Wind direction: "/>
+                android:text="Wind speed(km/h): "/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -438,7 +438,7 @@
 
             <ImageView
                 android:id="@+id/Wind_direction_ic"
-                android:src="@drawable/w_speed"
+                android:src="@drawable/w_direction"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
 
@@ -449,7 +449,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="Wind speed (km/h): "/>
+                android:text="Wind direction: "/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

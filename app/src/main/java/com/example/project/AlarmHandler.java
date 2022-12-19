@@ -17,8 +17,8 @@ public class AlarmHandler {
         PendingIntent sender = PendingIntent.getBroadcast(context,2,intent,0);
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (am != null){
-            long triggerAfter =  15 * 60 * 1000;
-            long triggerEvery = 60 * 60 * 1000;
+            long triggerAfter =    60 * 1000;
+            long triggerEvery = 60 *60 * 1000;
             am.setRepeating(AlarmManager.RTC_WAKEUP,triggerAfter,triggerEvery,sender);
         }
     }
