@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="key_map">AIzaSyAFMY3Tc00YTQzy52Q69z47gI-Z-NaL_vE</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="asset">
+        <item>Weather Asset</item>
+        <item>Weather Asset 2</item>
+        <item>Weather Asset 3</item>
+    </string-array>
+
+    <string-array name="attributes">
+        <item>humidity</item>
+        <item>temperature</item>
+        <item>windDirection</item>
+        <item>windSpeed</item>
+    </string-array>
+
+</resources>
