@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        videoView= (VideoView) findViewById(R.id.video_view);
+        videoView= findViewById(R.id.video_view);
         Uri uri = Uri.parse("android.resource://com.example.project/" + R.raw.video_bg);
         videoView.setVideoURI(uri);
         videoView.start();
@@ -51,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         callAPI();
+        setContentView(R.layout.activity_main);
 
 
-        videoView= (VideoView) findViewById(R.id.video_view);
+
+        videoView= findViewById(R.id.video_view);
         Uri uri = Uri.parse("android.resource://com.example.project/" + R.raw.video_bg);
         videoView.setVideoURI(uri);
         videoView.start();
@@ -75,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        AlarmHandler alarmHandler = new AlarmHandler(this);
+        /*AlarmHandler alarmHandler = new AlarmHandler(this);
         alarmHandler.cancelAlarmManager();
-        alarmHandler.setAlarmManager();
+        alarmHandler.setAlarmManager();*/
     }
 
     private void callAPI() {

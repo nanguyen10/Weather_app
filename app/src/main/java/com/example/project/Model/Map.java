@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 
 public class Map implements Serializable {
+    public static Map map;
     public JsonObject options;
     public JsonObject defaultt;
     public JsonArray center;

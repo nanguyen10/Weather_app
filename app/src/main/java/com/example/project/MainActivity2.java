@@ -50,7 +50,7 @@ public class MainActivity2 extends AppCompatActivity implements LoginInterface {
     @Override
     public void LoginSuccess() {
 
-        Intent intent = new Intent(MainActivity2.this,MainActivity3.class);
+        Intent intent = new Intent(MainActivity2.this,SplashActivity.class);
         startActivity(intent);
     }
 

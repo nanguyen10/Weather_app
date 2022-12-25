@@ -82,19 +82,23 @@ public class ChartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ArrayList<WeatherData> weatherData = new ArrayList<>();
-                String[] day = db.getDataFrom(asset_name[0]).get(0).getTime().split("T")[0].split("-");
-                String d = day[2];
-                weatherData.add(db.getDataFrom(asset_name[0]).get(0));
-                weatherData.get(0).setTime(d);
 
-                for (WeatherData data : db.getAllData()) {
-                    String[] day_i = data.getTime().split("T")[0].split("-");
-                    String d_i = day_i[2];
-                    if (!d_i.equals(d)) {
-                        data.setTime(d_i);
-                        weatherData.add(data);
-                        d = d_i;
+                ArrayList<WeatherData> weatherData = new ArrayList<>();
+
+                if(db.getDataFrom(asset_name[0])!= null) {
+                    String[] day = db.getDataFrom(asset_name[0]).get(0).getTime().split("T")[0].split("-");
+                    String d = day[2];
+                    /*weatherData.add(db.getDataFrom(asset_name[0]).get(0));
+                    weatherData.get(0).setTime(d);*/
+
+                    for (WeatherData data : db.getAllData()) {
+                        String[] day_i = data.getTime().split("T")[0].split("-");
+                        String d_i = day_i[2];
+                        if (!d_i.equals(d)) {
+                            data.setTime(d_i);
+                            weatherData.add(data);
+                            d = d_i;
+                        }
                     }
                 }
                 String All=new String();

@@ -7,11 +7,13 @@
         <entry key="..\:/Projects/app/src/main/res/drawable/circle_border.xml" value="0.1675" />
         <entry key="..\:/Projects/app/src/main/res/drawable/infowindow_bg.xml" value="0.165" />
         <entry key="..\:/Projects/app/src/main/res/drawable/nav_bg.xml" value="0.1675" />
+        <entry key="..\:/Projects/app/src/main/res/font/.xml" value="0.3" />
         <entry key="..\:/Projects/app/src/main/res/font/fspro.xml" value="0.3" />
         <entry key="..\:/Projects/app/src/main/res/layout/activity_info_window_adapter.xml" value="0.27447916666666666" />
         <entry key="..\:/Projects/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Projects/app/src/main/res/layout/activity_main2.xml" value="0.27447916666666666" />
         <entry key="..\:/Projects/app/src/main/res/layout/activity_main3.xml" value="0.264" />
+        <entry key="..\:/Projects/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Projects/app/src/main/res/layout/custom_infowindow.xml" value="0.27447916666666666" />
         <entry key="..\:/Projects/app/src/main/res/layout/fragment_chart.xml" value="0.27447916666666666" />
         <entry key="..\:/Projects/app/src/main/res/layout/fragment_detail.xml" value="0.27447916666666666" />

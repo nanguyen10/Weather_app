@@ -3,10 +3,15 @@ package com.example.project;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +26,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,13 +45,11 @@ import retrofit2.Response;
 public class MapsFragment extends Fragment{
 
     private MainActivity3 mainActivity3;
-    APIInterface apiInterface;
     BottomNavigationView navigationView;
     private GoogleMap mMap;
     Float zoom,max_zoom,min_zoom;
     ArrayList<Asset> weatherAsset= new ArrayList<>();
-    ArrayList<Asset> respondAsset= new ArrayList<>();
-    Map map = new Map();
+    Map map = Map.map;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -52,16 +58,16 @@ public class MapsFragment extends Fragment{
 
             mMap = googleMap;
 
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(mainActivity3, R.raw.map_style));
             for (Asset asset: ListAsset.list) {
                 if(asset.type.equals("WeatherAsset")){
                     asset.coordinates = asset.attributes.getAsJsonObject().get("location").getAsJsonObject().get("value").getAsJsonObject().get("coordinates").getAsJsonArray();
                     weatherAsset.add(asset);
                     LatLng weather = new LatLng(Double.parseDouble(String.valueOf(asset.coordinates.get(1))), Double.parseDouble(String.valueOf(asset.coordinates.get(0))));
-                    mMap.addMarker(new MarkerOptions().position(weather).title(asset.name));
+                    mMap.addMarker(new MarkerOptions().position(weather).title(asset.name).icon(bitmapDescriptor(mainActivity3.getApplicationContext(),R.drawable.ic_maker)));
                 }
 
             }
-            //ListAsset.list = weatherAsset;
 
             if(mMap != null){
                 mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -112,6 +118,16 @@ public class MapsFragment extends Fragment{
         }
     };
 
+    private BitmapDescriptor bitmapDescriptor (Context context, int vectorId){
+        Drawable drawable = ContextCompat.getDrawable(context, vectorId);
+        drawable.setBounds( 0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas= new Canvas (bitmap);
+        drawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -120,31 +136,12 @@ public class MapsFragment extends Fragment{
         
         mainActivity3 = (MainActivity3) getActivity();
 
-
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<Map> call = apiInterface.getMap();
-        call.enqueue(new Callback<Map>() {
-            @Override
-            public void onResponse(Call<Map> call, Response<Map> response) {
-                Log.d("API CALL", response.code()+"");
-                map = response.body();
-                map.defaultt = map.options.getAsJsonObject().get("default").getAsJsonObject();
-                map.center = map.defaultt.get("center").getAsJsonArray();
-                map.bounds = map.defaultt.get("bounds").getAsJsonArray();
-                zoom= Float.parseFloat(String.valueOf(map.defaultt.get("zoom")));
-                max_zoom= Float.parseFloat(String.valueOf(map.defaultt.get("maxZoom")));
-                min_zoom= Float.parseFloat(String.valueOf(map.defaultt.get("minZoom")));
-            }
-
-            @Override
-            public void onFailure(Call<Map> call, Throwable t) {
-                Log.d("API CALL", t.getMessage().toString());
-            }
-
-        });
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
-
+        map.defaultt = map.options.getAsJsonObject().get("default").getAsJsonObject();
+        map.center = map.defaultt.get("center").getAsJsonArray();
+        map.bounds = map.defaultt.get("bounds").getAsJsonArray();
+        zoom= Float.parseFloat(String.valueOf(map.defaultt.get("zoom")));
+        max_zoom= Float.parseFloat(String.valueOf(map.defaultt.get("maxZoom")));
+        min_zoom= Float.parseFloat(String.valueOf(map.defaultt.get("minZoom")));
 
         return inflater.inflate(R.layout.fragment_maps, container, false);
 
