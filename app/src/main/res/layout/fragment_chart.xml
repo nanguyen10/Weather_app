@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,26 +9,30 @@
     tools:context=".ChartFragment">
 
     <Spinner
-        android:background="@color/white"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/white_border"
         android:id="@+id/sp_assetName"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
     <Spinner
-        android:background="@color/white"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/white_border"
         android:id="@+id/sp_attribute"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="10dp"/>
 
     <Button
-        android:backgroundTint="@color/teal_200"
+        android:id="@+id/btn_show"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5dp"
+        android:backgroundTint="@color/teal_200"
         android:text="Show"
         android:textStyle="bold"
-        android:id="@+id/btn_show"/>
+        app:cornerRadius="10dp" />
 
     <TextView
         android:textColor="#B80606"
@@ -38,7 +43,7 @@
 
     <com.jjoe64.graphview.GraphView
         android:background="@color/white"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/graph_view" />

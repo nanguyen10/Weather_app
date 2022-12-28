@@ -135,18 +135,22 @@ public class ChartFragment extends Fragment {
 
                 }
 
-                //series.setTitle(asset_attribute[0]);
                 series.setColor(Color.rgb(255,0,0));
-                series.setThickness(6);
+                series.setThickness(5);
                 series.setDrawDataPoints(true);
                 series.setDrawBackground(true);
-                series.setBackgroundColor(Color.argb(65,0,150,0));
-                series.setDataPointsRadius(15);
+                series.setBackgroundColor(Color.argb(60,0,255,255));
+                series.setDataPointsRadius(10);
+
+
 
                 graph.addSeries(series);
+                graph.getViewport().setScalable(true);
+                //graph.getViewport().setXAxisBoundsManual(true);
 
-                TextView tv = view.findViewById(R.id.tv);
-                tv.setText(All);
+
+                /*TextView tv = view.findViewById(R.id.tv);
+                tv.setText(All);*/
 
             }
         });
