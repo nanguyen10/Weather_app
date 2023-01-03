@@ -4,18 +4,24 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.project.Model.Asset;
 import com.example.project.Model.ListAsset;
 
+import java.time.LocalDate;
+
 public class DetailFragment extends Fragment {
 
     View view;
-    TextView tv_asset,tv_lat,tv_lon,tv_humidity,tv_rain,tv_altitude,tv_azi,tv_irradiance,tv_zenith,tv_temp,tv_uv,tv_wea_data,tv_direc,tv_speed;
+    ImageView img;
+    TextView  tv_place,tv_date,tv_des,tv_asset,tv_humidity,tv_rain,tv_altitude,tv_azi,tv_irradiance,tv_zenith,tv_temp,tv_uv,tv_wea_data,tv_direc,tv_speed;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_detail,container,false);
@@ -26,9 +32,12 @@ public class DetailFragment extends Fragment {
     }
 
     private void anhxa() {
+        img = (ImageView) view.findViewById(R.id.img_icon);
+
+        tv_place = view.findViewById(R.id.tv_place);
+        tv_date = view.findViewById(R.id.tv_date_val);
+        tv_des  = (TextView) view.findViewById(R.id.tv_description);
         tv_asset= (TextView) view.findViewById(R.id.tv_asset_name);
-        tv_lat= (TextView) view.findViewById(R.id.tv_lat);
-        tv_lon= (TextView) view.findViewById(R.id.tv_lon);
         tv_humidity= (TextView) view.findViewById(R.id.tv_humidity_val);
         tv_rain= (TextView) view.findViewById(R.id.tv_rainfall_val);
         tv_altitude= (TextView) view.findViewById(R.id.tv_sun_altitude_val);
@@ -43,11 +52,13 @@ public class DetailFragment extends Fragment {
     }
 
     private void initUI() {
+        String icon_id = "";
         Asset asset = ListAsset.assett;
         if(asset != null){
             tv_asset.setText(asset.name);
-            tv_lat.setText(asset.coordinates.get(1).toString());
-            tv_lon.setText(asset.coordinates.get(0).toString());
+            tv_place.setText(asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("name").toString().replace("\"",""));
+            tv_date.setText(String.valueOf(LocalDate.now()));
+            tv_des.setText(asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("description").toString().replace("\"",""));
             tv_humidity.setText(asset.attributes.get("humidity").getAsJsonObject().get("value").toString());
             tv_rain.setText(asset.attributes.get("rainfall").getAsJsonObject().get("value").toString());
             tv_altitude.setText(asset.attributes.get("rainfall").getAsJsonObject().get("value").toString());
@@ -56,11 +67,44 @@ public class DetailFragment extends Fragment {
             tv_zenith.setText(asset.attributes.get("sunZenith").getAsJsonObject().get("value").toString());
             tv_temp.setText(asset.attributes.get("temperature").getAsJsonObject().get("value").toString());
             tv_uv.setText(asset.attributes.get("uVIndex").getAsJsonObject().get("value").toString());
-            tv_wea_data.setText("null");
+            tv_wea_data.setText(asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("sys").getAsJsonObject().get("country").toString().replace("\"",""));
             tv_direc.setText(asset.attributes.get("windDirection").getAsJsonObject().get("value").toString());
             tv_speed.setText(asset.attributes.get("windSpeed").getAsJsonObject().get("value").toString() + " km/h");
+
+            icon_id = asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("icon").toString().replace("\"","");
+            icon_id = icon_id.substring(0,icon_id.length() -1);
+            Log.d("aaa", icon_id);
         }
 
+        switch (icon_id){
+            case "01":
+                img.setImageResource(R.drawable.ic_01d);
+                break;
+            case "02":
+                img.setImageResource(R.drawable.ic_02d);
+                break;
+            case "03":
+                img.setImageResource(R.drawable.ic_03d);
+                break;
+            case "04":
+                img.setImageResource(R.drawable.ic_04d);
+                break;
+            case "50":
+                img.setImageResource(R.drawable.ic_50d);
+                break;
+            case "09":
+                img.setImageResource(R.drawable.ic_09d);
+                break;
+            case "10":
+                img.setImageResource(R.drawable.ic_10d);
+                break;
+            case "11":
+                img.setImageResource(R.drawable.ic_11d);
+                break;
+            case "13":
+                img.setImageResource(R.drawable.ic_13d);
+                break;
+        }
 
     }
 }

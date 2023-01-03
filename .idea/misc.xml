@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Projects/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1845" />
         <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/border.xml" value="0.1845" />
+        <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/circle_border.xml" value="0.1845" />
+        <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/frame.xml" value="0.1845" />
         <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/gradient_color.xml" value="0.1845" />
+        <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/ic_launcher_background.xml" value="0.1845" />
+        <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/infowindow_bg.xml" value="0.107" />
         <entry key="..\:/Projects/app/src/main/res/drawable-xxxhdpi/white_border.xml" value="0.107" />
         <entry key="..\:/Projects/app/src/main/res/drawable/border.xml" value="0.1675" />
         <entry key="..\:/Projects/app/src/main/res/drawable/border_white.xml" value="0.1845" />

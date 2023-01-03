@@ -28,53 +28,55 @@
 
 
         <TextView
-            android:id="@+id/latitude"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:elevation="25dp"
-            android:text="Latitude"
-            android:textSize="20sp" />
+            android:text="Date:"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_lat"
+            android:id="@+id/tv_date_val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/latitude"
+            android:layout_below="@+id/tv_date"
             android:layout_marginLeft="10dp"
-            android:text="000000000000000000"
             android:elevation="25dp"
+            android:text=""
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/longitude"
+            android:id="@+id/tv_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_lat"
+            android:layout_below="@id/tv_date_val"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:elevation="25dp"
-            android:text="Longtitude"
-            android:textSize="20sp" />
+            android:textStyle="bold"
+            android:text="Place"
+            android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/tv_lon"
+            android:id="@+id/tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/longitude"
+            android:layout_below="@+id/tv_place"
             android:layout_marginLeft="10dp"
-            android:text="000000000000000000"
             android:elevation="25dp"
-            android:textSize="20sp" />
+            android:text=""
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <ImageView
             android:id="@+id/img_icon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@+id/tv_lat"
-            android:src="@drawable/weather_asset">
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_01d">
 
         </ImageView>
 

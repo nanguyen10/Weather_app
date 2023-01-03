@@ -14,8 +14,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.project.CustomSpiner.SpinnerAdapter;
-import com.example.project.CustomSpiner.SpinnerItems;
 import com.example.project.Model.Asset;
 import com.example.project.Model.ListAsset;
 import com.example.project.Model.WeatherData;

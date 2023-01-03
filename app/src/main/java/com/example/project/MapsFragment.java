@@ -63,7 +63,7 @@ public class MapsFragment extends Fragment{
                 if(asset.type.equals("WeatherAsset")){
                     asset.coordinates = asset.attributes.getAsJsonObject().get("location").getAsJsonObject().get("value").getAsJsonObject().get("coordinates").getAsJsonArray();
                     weatherAsset.add(asset);
-                    LatLng weather = new LatLng(Double.parseDouble(String.valueOf(asset.coordinates.get(1))), Double.parseDouble(String.valueOf(asset.coordinates.get(0))));
+                    LatLng weather = new LatLng(Double.parseDouble(String.valueOf(asset.coordinates.get(1)).substring(0,8)), Double.parseDouble(String.valueOf(asset.coordinates.get(0)).substring(0,8)));
                     mMap.addMarker(new MarkerOptions().position(weather).title(asset.name).icon(bitmapDescriptor(mainActivity3.getApplicationContext(),R.drawable.ic_maker)));
                 }
 
