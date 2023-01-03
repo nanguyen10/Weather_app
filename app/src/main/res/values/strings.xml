@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Project</string>
+    <string name="app_name">UIT Weather</string>
     <string name="key_map">AIzaSyC0BelhQYseFLFF-m-_yWa1rmip2fFl2Ss</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="channel_name">Channel1</string>
+    <string name="channel_description">AddSQL</string>
     <string-array name="asset">
         <item>Weather Asset</item>
         <item>Weather Asset 2</item>
@@ -13,6 +15,26 @@
         <item>temperature</item>
         <item>windDirection</item>
         <item>windSpeed</item>
+    </string-array>
+
+    <string-array name="month">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>2022</item>
+        <item>2023</item>
     </string-array>
 
 </resources>

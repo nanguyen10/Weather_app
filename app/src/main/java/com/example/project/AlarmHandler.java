@@ -14,7 +14,15 @@ public class AlarmHandler {
 
     public void  setAlarmManager(){
         Intent intent = new Intent(context,BroadCast.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context,2,intent,0);
+        PendingIntent sender = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            sender = PendingIntent.getBroadcast(context,2,intent,PendingIntent.FLAG_MUTABLE);
+        }
+        else
+        {
+            sender = PendingIntent.getBroadcast(context,2,intent,PendingIntent.FLAG_ONE_SHOT);
+        }
+
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (am != null){
             long triggerAfter =    60 * 1000;

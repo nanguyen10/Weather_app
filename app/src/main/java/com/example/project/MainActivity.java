@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*AlarmHandler alarmHandler = new AlarmHandler(this);
+        AlarmHandler alarmHandler = new AlarmHandler(this);
         alarmHandler.cancelAlarmManager();
-        alarmHandler.setAlarmManager();*/
+        alarmHandler.setAlarmManager();
     }
 
 

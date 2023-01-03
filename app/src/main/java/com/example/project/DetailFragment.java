@@ -14,11 +14,18 @@ import com.example.project.Model.ListAsset;
 
 public class DetailFragment extends Fragment {
 
+    View view;
     TextView tv_asset,tv_lat,tv_lon,tv_humidity,tv_rain,tv_altitude,tv_azi,tv_irradiance,tv_zenith,tv_temp,tv_uv,tv_wea_data,tv_direc,tv_speed;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail,container,false);
+        view = inflater.inflate(R.layout.fragment_detail,container,false);
 
+        anhxa();
+        initUI();
+        return view;
+    }
+
+    private void anhxa() {
         tv_asset= (TextView) view.findViewById(R.id.tv_asset_name);
         tv_lat= (TextView) view.findViewById(R.id.tv_lat);
         tv_lon= (TextView) view.findViewById(R.id.tv_lon);
@@ -33,17 +40,14 @@ public class DetailFragment extends Fragment {
         tv_wea_data= (TextView) view.findViewById(R.id.tv_weather_data_val);
         tv_direc= (TextView) view.findViewById(R.id.tv_wind_direction_val);
         tv_speed= (TextView) view.findViewById(R.id.tv_wind_speed_val);
-
-        initUI();
-        return view;
     }
 
     private void initUI() {
         Asset asset = ListAsset.assett;
         if(asset != null){
             tv_asset.setText(asset.name);
-            tv_lat.setText("Latitude: " + asset.coordinates.get(1));
-            tv_lon.setText("Longitude: "+ asset.coordinates.get(0));
+            tv_lat.setText(asset.coordinates.get(1).toString());
+            tv_lon.setText(asset.coordinates.get(0).toString());
             tv_humidity.setText(asset.attributes.get("humidity").getAsJsonObject().get("value").toString());
             tv_rain.setText(asset.attributes.get("rainfall").getAsJsonObject().get("value").toString());
             tv_altitude.setText(asset.attributes.get("rainfall").getAsJsonObject().get("value").toString());
@@ -54,7 +58,7 @@ public class DetailFragment extends Fragment {
             tv_uv.setText(asset.attributes.get("uVIndex").getAsJsonObject().get("value").toString());
             tv_wea_data.setText("null");
             tv_direc.setText(asset.attributes.get("windDirection").getAsJsonObject().get("value").toString());
-            tv_speed.setText(asset.attributes.get("windSpeed").getAsJsonObject().get("value").toString());
+            tv_speed.setText(asset.attributes.get("windSpeed").getAsJsonObject().get("value").toString() + " km/h");
         }
 
 
