@@ -91,6 +91,7 @@
         android:layout_marginRight="10dp">
 
         <LinearLayout
+            android:id="@+id/humidity_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -137,13 +138,13 @@
             android:layout_height="match_parent"
             android:background="#535353"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"/>/>
+            android:layout_marginTop="10dp"/>
 
         <LinearLayout
+            android:id="@+id/temperature_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -200,6 +201,7 @@
 
 
         <LinearLayout
+            android:id="@+id/wSpeed_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -247,10 +249,10 @@
             android:layout_marginTop="10dp"/>/>
 
         <LinearLayout
+            android:id="@+id/wDirection_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:layout_width="match_parent"

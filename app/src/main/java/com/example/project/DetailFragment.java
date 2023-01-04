@@ -9,16 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.project.Model.Asset;
 import com.example.project.Model.ListAsset;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
 
 public class DetailFragment extends Fragment {
 
+    ChartFragment chartFragment;
+    String asset_name;
+    LinearLayout humidity, temperature, wSpeed, wDirection;
+    BottomNavigationView navigationView;
+    MainActivity3 mainActivity3;
     View view;
     ImageView img;
     TextView  tv_place,tv_date,tv_des,tv_asset,tv_humidity,tv_rain,tv_altitude,tv_azi,tv_irradiance,tv_zenith,tv_temp,tv_uv,tv_wea_data,tv_direc,tv_speed;
@@ -28,11 +35,49 @@ public class DetailFragment extends Fragment {
 
         anhxa();
         initUI();
+        mainActivity3 = (MainActivity3) getActivity();
+        navigationView = mainActivity3.navigationView;
+
+        humidity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListAsset.assett.attributes_name = "humidity";
+                navigationView.setSelectedItemId(R.id.action_chart);
+            }
+        });
+
+       temperature.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               ListAsset.assett.attributes_name = "temperature";
+               navigationView.setSelectedItemId(R.id.action_chart);
+           }
+       });
+
+       wSpeed.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               ListAsset.assett.attributes_name = "windSpeed";
+               navigationView.setSelectedItemId(R.id.action_chart);
+           }
+       });
+
+       wDirection.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               ListAsset.assett.attributes_name = "windDirection";
+               navigationView.setSelectedItemId(R.id.action_chart);
+           }
+       });
         return view;
     }
 
     private void anhxa() {
         img = (ImageView) view.findViewById(R.id.img_icon);
+        humidity= (LinearLayout) view.findViewById(R.id.humidity_layout);
+        temperature= (LinearLayout) view.findViewById(R.id.temperature_layout);
+        wDirection= (LinearLayout) view.findViewById(R.id.wDirection_layout);
+        wSpeed= (LinearLayout) view.findViewById(R.id.wSpeed_layout);
 
         tv_place = view.findViewById(R.id.tv_place);
         tv_date = view.findViewById(R.id.tv_date_val);
@@ -55,6 +100,7 @@ public class DetailFragment extends Fragment {
         String icon_id = "";
         Asset asset = ListAsset.assett;
         if(asset != null){
+            asset_name = asset.name;
             tv_asset.setText(asset.name);
             tv_place.setText(asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("name").toString().replace("\"",""));
             tv_date.setText(String.valueOf(LocalDate.now()));
@@ -73,7 +119,6 @@ public class DetailFragment extends Fragment {
 
             icon_id = asset.attributes.get("weatherData").getAsJsonObject().get("value").getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("icon").toString().replace("\"","");
             icon_id = icon_id.substring(0,icon_id.length() -1);
-            Log.d("aaa", icon_id);
         }
 
         switch (icon_id){

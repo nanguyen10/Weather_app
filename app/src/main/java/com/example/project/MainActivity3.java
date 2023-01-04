@@ -32,6 +32,7 @@ public class MainActivity3 extends AppCompatActivity {
     MapsFragment mapsFragment= new MapsFragment();
     DetailFragment detailFragment = new DetailFragment();
     ChartFragment chartFragment = new ChartFragment();
+    OtherFragment otherFragment = new OtherFragment();
 
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
@@ -42,8 +43,6 @@ public class MainActivity3 extends AppCompatActivity {
 
 
         requestPermissionsIfNecessary(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav_view);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,mapsFragment).commit();
@@ -59,6 +58,9 @@ public class MainActivity3 extends AppCompatActivity {
                         break;
                     case R.id.action_chart:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,chartFragment).commit();
+                        break;
+                    case R.id.action_other:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container,otherFragment).commit();
                         break;
                 }
                 return true;

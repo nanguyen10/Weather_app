@@ -25,6 +25,7 @@ public class Asset {
     public String path[];
     @SerializedName("attributes")
     public JsonObject attributes;
+    public String attributes_name;
     public JsonArray coordinates;
 
 

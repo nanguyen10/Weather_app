@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,22 +30,35 @@ import java.util.List;
 public class ChartFragment extends Fragment {
 
     private MainActivity3 mainActivity3;
-    Spinner sp1,sp2,sp0,sp3;
+    public Spinner sp1,sp2,sp0,sp3;
+    public Button btn;
+    View view;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        init_selection_spinner();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chart,container,false);
+        view = inflater.inflate(R.layout.fragment_chart,container,false);
 
         mainActivity3 = (MainActivity3) getActivity();
-
+        btn = view.findViewById(R.id.btn_show);
+        sp0 = view.findViewById(R.id.sp_assetName);
+        sp1 = view.findViewById(R.id.sp_attribute);
+        sp2 = view.findViewById(R.id.sp_month);
+        sp3 = view.findViewById(R.id.sp_year);
         DatabaseHandler db = new DatabaseHandler(mainActivity3);
         //addData();
 
+
+        //Log.d("aaa", "name: "+ListAsset.assett.name +" attri: "+ListAsset.assett.attributes_name );
+
         String[] spn = new String[4];
-
-
-        sp0 = view.findViewById(R.id.sp_assetName);
-
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(mainActivity3,R.array.asset, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp0.setAdapter(adapter1);
@@ -59,7 +74,6 @@ public class ChartFragment extends Fragment {
             }
         });
 
-        sp1 = view.findViewById(R.id.sp_attribute);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(mainActivity3,R.array.attributes,android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp1.setAdapter(adapter2);
@@ -75,7 +89,9 @@ public class ChartFragment extends Fragment {
             }
         });
 
-        sp2 = view.findViewById(R.id.sp_month);
+        init_selection_spinner();
+
+
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(mainActivity3,R.array.month,android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp2.setAdapter(adapter3);
@@ -93,8 +109,6 @@ public class ChartFragment extends Fragment {
 
             }
         });
-
-        sp3 = view.findViewById(R.id.sp_year);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(mainActivity3,R.array.year,android.R.layout.simple_spinner_item);
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp3.setAdapter(adapter4);
@@ -111,7 +125,6 @@ public class ChartFragment extends Fragment {
         });
 
         GraphView graph =  view.findViewById(R.id.graph_view);
-        Button btn = view.findViewById(R.id.btn_show);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,6 +217,45 @@ public class ChartFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void init_selection_spinner() {
+
+        if(ListAsset.assett != null && ListAsset.assett.attributes_name != null){
+            switch (ListAsset.assett.name){
+                case "Weather Asset 2":
+                    sp0.setSelection(1);
+                    break;
+                case "Weather Asset 3":
+                    sp0.setSelection(2);
+                    break;
+                default:
+                    sp0.setSelection(0);
+            }
+
+            switch (ListAsset.assett.attributes_name){
+                case "temperature":
+                    sp1.setSelection(1);
+                    break;
+                case "windDirection":
+                    sp1.setSelection(2);
+                    break;
+                case "windSpeed":
+                    sp1.setSelection(3);
+                    break;
+                default:
+                    sp1.setSelection(0);
+
+            }
+
+        }
+        sp2.setSelection(Integer.parseInt(LocalDate.now().toString().split("-")[1])-1);
+        sp3.setSelection(Integer.parseInt(LocalDate.now().toString().split("-")[0])-2022);
+
+
+
+
+
     }
 
 
